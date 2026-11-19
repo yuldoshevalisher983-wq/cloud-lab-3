@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>3-Mustaqil ta'lim: Serverless Modernizatsiya</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #eef2f5; text-align: center; padding: 40px; }
+        .box { background: white; max-width: 500px; margin: auto; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        input, button { padding: 10px; font-size: 16px; margin: 10px 5px; }
+        button { background: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        pre { background: #f8f9fa; padding: 15px; text-align: left; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Modernizatsiya qilingan ilova</h2>
+        <p>Hisob-kitob qismi <b>Serverless (API)</b> xizmatiga ajratilgan</p>
+        <input type="number" id="summa" value="250000" placeholder="Summani kiriting">
+        <button onclick="chekOlish()">Serverless orqali hisoblash</button>
+        <pre id="natija">Natija shu yerda chiqadi...</pre>
+    </div>
+
+    <script>
+        async function chekOlish() {
+            const summa = document.getElementById('summa').value;
+            document.getElementById('natija').innerText = "Serverless funksiyaga so'rov yuborilmoqda...";
+            // Ajratib olingan Serverless API ga murojaat
+            const javob = await fetch(`/api/hisob?summa=${summa}`);
+            const malumot = await javob.json();
+            document.getElementById('natija').innerText = JSON.stringify(malumot, null, 2);
+        }
+    </script>
+</body>
+</html>
